@@ -1,4 +1,3 @@
-create a file on GitHub named 'pull-request-template.md' and paste this into file.
  ### Type of change made:
 - [ ] Bugfix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
