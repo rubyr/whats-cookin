@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  height: 100px;
+}
+
+aside {
+  float: left;
+  height: calc(100vh - 100px);
+  width: 200px;
+}
+
+.main-view {
+  float: right;
+  width: calc(100vw - 200px);
+}
+
+.recipe-holder {
+  columns: 400px;
+}
+
+.card {
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.tag-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag {
+  color: rgb(254, 254, 254);
+  margin: 2px;
+  border-radius: 2px;
+  padding: 3px 5px;
+}
+
+/* 
+
+  when we generate tag: 
+   - determine tag color somehow
+   - set style of tag element to have a bg color of that 
+
+*/
