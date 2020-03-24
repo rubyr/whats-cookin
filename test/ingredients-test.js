@@ -40,7 +40,7 @@ describe('Ingredient', function() {
   });
 
   it('should have a quantity needed to make recipe', function() {
-    const ingredient = new Ingredient(20081,30)
+    const ingredient = new Ingredient(20081, 30)
     expect(ingredient.quantityRequired).to.be.equal(30);
   });
 
@@ -49,12 +49,10 @@ describe('Ingredient', function() {
     expect(ingredient.quantityInPantry).to.be.equal(40);
   });
 
-  it('should check if there is enough ingredient in pantry to make recipe', function(){
+  it('should check if there is enough ingredient in pantry to make recipe', function() {
     const ingredient1 = new Ingredient(20081, 40, 50)
     const ingredient2 = new Ingredient(18372, 23, 18)
-    ingredient1.checkQuantity();
-    ingredient2.checkQuantity();
-    expect(ingredient1.checkQuantity).to.be.equal(true);
-    expect(ingredient2.checkQuantity).to.be.equal(false);
+    expect(ingredient1.checkQuantity()).to.be.equal(true);
+    expect(ingredient2.checkQuantity()).to.be.equal(false);
   });
 });
