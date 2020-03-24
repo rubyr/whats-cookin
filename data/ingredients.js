@@ -1232,4 +1232,8 @@ let ingredientsData = [
     "name": "vegetable stock",
     "estimatedCostInCents": 613
   }
-]
+];
+
+if (typeof module !== "undefined") {
+  module.exports = ingredientsData;
+}
