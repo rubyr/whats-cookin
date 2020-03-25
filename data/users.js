@@ -1,5 +1,15 @@
 let usersData = [
   {
+    "name": "Testy McTestFace",
+    "id": 0,
+    "pantry": [
+      {
+        "ingredient": 11477,
+        "amount": 4
+      },
+    ]
+  },
+  {
     "name": "Saige O'Kon",
     "id": 1,
     "pantry": [
@@ -7601,3 +7611,7 @@ let usersData = [
     ]
   }
 ]
+
+if (typeof module !== 'undefined') {
+  module.exports = usersData;
+}

@@ -7,7 +7,7 @@ if (typeof module !== undefined) {
 }
 
 class Recipe {
-  constructor(id){
+  constructor(id) {
     this.id = id;
     let recipeData = recipes.find(obj => obj.id === id)
     this.name = recipeData.name;
