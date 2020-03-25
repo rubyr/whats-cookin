@@ -1,10 +1,12 @@
 let _users;
 let Ingredient;
 let Recipe;
+let Pantry;
 if (typeof module !== undefined) {
   _users = require('../data/users');
   Ingredient = require('./Ingredient');
   Recipe = require('./recipe');
+  Pantry = require('./pantry');
 } else {
   _users = usersData;
 }
@@ -14,7 +16,7 @@ class User {
     this.id = id;
     const userData = _users.find(obj => obj.id === id);
     this.name = userData.name;
-    this.pantry = userData.pantry.map(ing => new Ingredient(ing.ingredient, {amount: ing.amount}));
+    this.pantry = new Pantry(userData.pantry.map(ing => new Ingredient(ing.ingredient, {amount: ing.amount})));
     this.favoriteRecipes = [];
     this.toCook = [];
   }

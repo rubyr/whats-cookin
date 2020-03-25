@@ -9,7 +9,7 @@ class Ingredient {
   constructor(id, quantity) {
     const data = ingredientsData.filter((obj) => obj.id === id)[0];
     if (data !== undefined) {
-      this.itemID = id;
+      this.id = id;
       this.name = data.name;
       this.estimatedCostInCents = data.estimatedCostInCents;
       this.amount = quantity.amount;

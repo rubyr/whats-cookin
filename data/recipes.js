@@ -1,4 +1,44 @@
 const recipeData = [
+  {
+    "id": -2,
+    "image": "",
+    "ingredients": [
+      {
+        "id": 20081,
+        "quantity": {
+            "amount": 500,
+            "unit": "c"
+        }
+    },
+    {
+        "id": 18372,
+        "quantity": {
+            "amount": 0.5,
+            "unit": "tsp"
+        }
+    },
+    ]
+  },
+    {
+      "id": -1,
+      "image": "",
+      "ingredients": [
+        {
+          "id": 20081,
+          "quantity": {
+              "amount": 200,
+              "unit": "c"
+          }
+      },
+      {
+          "id": 18372,
+          "quantity": {
+              "amount": 4,
+              "unit": "tsp"
+          }
+      },
+      ]
+    },
     {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",

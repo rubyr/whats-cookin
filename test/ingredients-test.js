@@ -17,7 +17,7 @@ describe('Ingredient', function() {
   });
 
   it('should take in an ingredient ID', function() {
-    expect(ingredient.itemID).to.equal(20081)
+    expect(ingredient.id).to.equal(20081)
   });
 
   it('should have a name associated with ID', function() {

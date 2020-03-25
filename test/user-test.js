@@ -3,6 +3,7 @@ const expect = chai.expect;
 const User = require('../src/user');
 const Ingredient = require('../src/Ingredient');
 const Recipe = require('../src/recipe');
+const Pantry = require('../src/pantry');
 
 describe('user', function() {
   let user;
@@ -27,9 +28,9 @@ describe('user', function() {
   });
 
   it('should have a pantry', function() {
-    expect(user.pantry).to.deep.equal([
+    expect(user.pantry).to.deep.equal(new Pantry([
       new Ingredient(11477, {amount: 4}),
-    ]);
+    ]));
   });
 
   it('should have a list of favorite recipes', function() {
