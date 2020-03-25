@@ -6,19 +6,17 @@ if (typeof module !== undefined) {
 }
 
 class Ingredient {
-  constructor(id, required = 0, present = 0) {
+  constructor(id, quantity) {
     const data = ingredientsData.filter((obj) => obj.id === id)[0];
     if (data !== undefined) {
-      this.itemID = id;
+      this.id = id;
       this.name = data.name;
       this.estimatedCostInCents = data.estimatedCostInCents;
-      this.quantityRequired = required;
-      this.quantityInPantry = present;
+      this.amount = quantity.amount;
+      this.unit = quantity.unit;
+    } else {
+      throw 'Ingredient ID doesn\'t exist'
     }
-  }
-
-  checkQuantity() {
-    return this.quantityRequired <= this.quantityInPantry;
   }
 }
 
