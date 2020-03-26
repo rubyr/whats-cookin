@@ -4,27 +4,23 @@
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header>
-      <h1>Whats Cookin</h1>
-      <input type="text" id="search">
+      <h1>What's Cookin'?</h1>
+      <input type="text" id="search" placeholder="Search">
     </header>
     <main>
       <aside>
-        this is the aside
+        <h2>Welcome, Horacio!</h2>
+        <button>Show Pantry</button>
+        <button>Show Favorite Meals</button>
+        <button>Show Upcoming Meals</button>
       </aside>
       <section class="main-view">
         <section class="recipe-holder">
-          <section class="card">
-            <h2>scottish cookies</h2>
-            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-            <section class="tag-list">
-              <div class="tag" style="background:#ba2211">cool</div>
-              <div class="tag" style="background:#22ba11">surprising</div>
-            </section>
-          </section>
         </section>
         <section class="recipe-view hidden"></section>
       </section>
@@ -32,7 +28,8 @@
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
-    
+    <script type="text/javascript" src="./Ingredient.js"></script>
+    <script type="text/javascript" src="./recipe.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

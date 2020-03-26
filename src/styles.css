@@ -3,41 +3,115 @@
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
+  --main-bg: #222831;
+  --secondary-bg: #393e46;
+  --highlight: #00adb5;
+  --text: #eeeeee;
+  --header-height: 100px;
+  --aside-width: 300px;
+  --column-width: 300px;
 }
 
 header {
-  height: 100px;
+  width: 100vw;
+  height: var(--header-height);
+  background: var(--text);
+  color: var(--highlight);
+  text-align: center;
+  position: fixed;
+  z-index: 10000;
+}
+
+header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+}
+
+header #search {
+  width: 200px;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  outline: none;
 }
 
 aside {
   float: left;
-  height: calc(100vh - 100px);
-  width: 200px;
+  height: calc(100vh - var(--header-height));
+  width: var(--aside-width);
+  background: var(--secondary-bg);
+  color: var(--text);
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: var(--header-height);
+}
+
+aside button {
+  line-height: 32px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--text);
+  border-radius: 5px;
+}
+
+aside button.selected {
+  background-color: var(--highlight);
+  color: var(--text);
 }
 
 .main-view {
   float: right;
-  width: calc(100vw - 200px);
+  width: calc(100vw - var(--aside-width));
+  margin-top: var(--header-height);
 }
 
 .recipe-holder {
-  columns: 400px;
+  columns: var(--column-width);
+  background: var(--main-bg);
+  color: var(--text);
+  min-height: calc(100vh - var(--header-height));
+  padding: 20px;
 }
 
 .card {
-  border: 1px solid black;
   display: inline-block;
+  background-color: var(--text);
+  color: var(--main-bg);
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card-image {
+  overflow: hidden;
 }
 
 .card img {
+  z-index: -1000;
   width: 100%;
   height: 250px;
   object-fit: cover;
+  background: #00000000;
+  /* mix-blend-mode: screen; */
+  transition: transform 0.3s, background 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+  background: #000000ee;
 }
 
 .tag-list {
+  padding: 5px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .tag {
@@ -45,12 +119,5 @@ aside {
   margin: 2px;
   border-radius: 2px;
   padding: 3px 5px;
+  display: inline-block;
 }
-
-/* 
-
-  when we generate tag: 
-   - determine tag color somehow
-   - set style of tag element to have a bg color of that 
-
-*/

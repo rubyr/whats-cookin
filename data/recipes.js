@@ -5422,4 +5422,6 @@ const recipeData = [
     }
 ];
 
-module.exports = recipeData;
+if (typeof module !== 'undefined') {
+  module.exports = recipeData;
+}

@@ -1,8 +1,5 @@
-let ingredientsData;
-if (typeof module !== undefined) {
+if (typeof module !== 'undefined') {
   ingredientsData = require('../data/ingredients');
-} else {
-  ingredientsData = window.ingredientsData;
 }
 
 class Ingredient {
