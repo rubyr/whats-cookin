@@ -13,20 +13,23 @@ function displayRecipes() {
     return acc
   }, []);
   recipesToDisplay.forEach(recipe => {
-    recipeHolder.innerHTML += `
+    let str = `
     <section class="card" data-recipeid='${recipe.id}'>
       <h2>${recipe.name}</h2>
-      <img src="${recipe.image}">
-      <section class="tag-list">`
+      <div class="card-image">
+        <img src="${recipe.image}">
+      </div>
+      <section class="tag-list">`;
     recipe.tags.forEach(tag => {
-      recipeHolder.innerHTML += `
+      str += `
         <div class="tag" style="background:#ba2211">${tag}</div>
         `
     })
-    recipeHolder.innerHTML += `
+    str += `
         </section>
       </section>
     </section>
     `
+    recipeHolder.innerHTML += str;
   })
 }

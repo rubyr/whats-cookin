@@ -13,10 +13,13 @@
 }
 
 header {
+  width: 100vw;
   height: var(--header-height);
   background: var(--text);
   color: var(--highlight);
   text-align: center;
+  position: fixed;
+  z-index: 10000;
 }
 
 header h1 {
@@ -42,6 +45,8 @@ aside {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: var(--header-height);
 }
 
 aside button {
@@ -62,6 +67,7 @@ aside button.selected {
 .main-view {
   float: right;
   width: calc(100vw - var(--aside-width));
+  margin-top: var(--header-height);
 }
 
 .recipe-holder {
@@ -96,14 +102,16 @@ aside button.selected {
 }
 
 .card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
   background: #000000ee;
 }
 
 .tag-list {
+  padding: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .tag {
@@ -111,12 +119,5 @@ aside button.selected {
   margin: 2px;
   border-radius: 2px;
   padding: 3px 5px;
+  display: inline-block;
 }
-
-/* 
-
-  when we generate tag: 
-   - determine tag color somehow
-   - set style of tag element to have a bg color of that 
-
-*/
