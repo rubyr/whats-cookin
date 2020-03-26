@@ -13,7 +13,7 @@ class Pantry {
     let ingLoc = this.ingredients.indexOf(ingredientObj);
     return ingLoc;
   }
-  
+
   updateIngredient(ingID, newAmount) {
     let ingLoc = this.findIngredient(ingID);
     this.ingredients[ingLoc].amount = newAmount;
