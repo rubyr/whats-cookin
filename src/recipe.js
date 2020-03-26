@@ -1,6 +1,6 @@
 let recipes;
-let Ingredient = require('./Ingredient')
-if (typeof module !== undefined) {
+if (typeof module !== 'undefined') {
+  Ingredient = require('./Ingredient')
   recipes = require('../data/recipes');
 } else {
   recipes = recipeData;
