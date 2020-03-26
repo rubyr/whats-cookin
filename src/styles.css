@@ -39,7 +39,24 @@ aside {
   background: var(--secondary-bg);
   color: var(--text);
   text-align: center;
-  padding-top: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+aside button {
+  line-height: 32px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--text);
+  border-radius: 5px;
+}
+
+aside button.selected {
+  background-color: var(--highlight);
+  color: var(--text);
 }
 
 .main-view {
