@@ -121,3 +121,55 @@ aside button.selected {
   padding: 3px 5px;
   display: inline-block;
 }
+
+.recipe-overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: var(--aside-width);
+  width: calc(100vw - var(--aside-width));
+  height: calc(100vh - var(--header-height));
+  background: #00000055;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-view {
+  width: 85%;
+  height: 80%;
+  background-color: var(--text);
+  border-radius: 10px;
+  padding: 10px;
+  overflow: scroll;
+}
+
+.recipe-view h2 {
+  text-align: center;
+  margin: 5px 0 15px;
+}
+
+.recipe-view img {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.recipe-view hr {
+  margin: 10px 0;
+}
+
+.recipe-view ul {
+  columns: 2;
+  margin-left: 20px;
+}
+
+.recipe-view ol {
+  margin-left: 20px;
+}
+
+.recipe-view ol li {
+
+}
+
+.hidden {
+  display: none;
+}
