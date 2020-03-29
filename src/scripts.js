@@ -56,6 +56,7 @@ function showRecipe(recipeId) {
   const recipeData = recipes.find(recipe => recipe.id === recipeId);
   const recipeView = document.querySelector(".recipe-view");
   recipeOverlay.classList.remove("hidden");
+  let totalCost = 0;
   recipeView.innerHTML += `
   <button id="close-recipe" onclick="hideRecipe()">&times;</button>
   <h2>${recipeData.name}</h2>
@@ -65,6 +66,7 @@ function showRecipe(recipeId) {
   ${recipeData.ingredients.reduce(
     (acc, ing) => {
       const ingredient = new Ingredient(ing.id, ing.quantity);
+      totalCost += ingredient.estimatedCostInCents;
 
       acc.push(`<li>${
         +ingredient.amount.toFixed(2)
@@ -78,6 +80,8 @@ function showRecipe(recipeId) {
     }, [])
     .join("")}
   </ul>
+  <br>
+  <p>Total recipe cost: $${(totalCost / 100).toFixed(2)}</p>
   <hr>
   <h3>Instructions</h3>
   <ol>
