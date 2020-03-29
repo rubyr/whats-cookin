@@ -8,12 +8,6 @@ recipeHolder.addEventListener("click", function(event) {
   }
 });
 
-recipeOverlay.addEventListener("click", function() {
-  if (!event.target.classList.contains("recipe-view")) {
-    hideRecipe();
-  }
-});
-
 function loadHomePage() {
   loadRecipes();
 }
@@ -63,8 +57,10 @@ function showRecipe(recipeId) {
   const recipeView = document.querySelector(".recipe-view");
   recipeOverlay.classList.remove("hidden");
   recipeView.innerHTML += `
+  <button id="close-recipe" onclick="hideRecipe()">&times;</button>
   <h2>${recipeData.name}</h2>
   <img src="${recipeData.image}">
+  <h3>Ingredients</h3>
   <ul>
   ${recipeData.ingredients.reduce(
     (acc, ing) => {
@@ -97,6 +93,7 @@ function showRecipe(recipeId) {
 
 function hideRecipe() {
   const recipeView = document.querySelector(".recipe-view");
+  recipeView.scrollTop = 0;
   recipeView.innerHTML = "";
   recipeOverlay.classList.add("hidden");
 }

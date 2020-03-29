@@ -135,6 +135,7 @@ aside button.selected {
 }
 
 .recipe-view {
+  position: absolute;
   width: 85%;
   height: 80%;
   background-color: var(--text);
@@ -143,14 +144,27 @@ aside button.selected {
   overflow: scroll;
 }
 
+.recipe-view button {
+  position: sticky;
+  top: 5px;
+  left: 15px;
+  border: none;
+  background: none;
+  color: var(--secondary-bg);
+  line-height: 30px;
+  font-size: 30px;
+}
+
 .recipe-view h2 {
   text-align: center;
   margin: 5px 0 15px;
 }
 
 .recipe-view img {
-  display: inline-block;
-  margin: 0 auto;
+  display: block;
+  margin: 0 auto 30px;
+  height: 50%;
+
 }
 
 .recipe-view hr {
@@ -167,7 +181,7 @@ aside button.selected {
 }
 
 .recipe-view ol li {
-
+  margin: 5px 0;
 }
 
 .hidden {
