@@ -22,8 +22,8 @@ function loadRecipes() {
   recipesToDisplay.forEach(recipe => {
     const getHue = function(str) {
       var hash = 0;
-      if (str.length === 0) { 
-        return hash; 
+      if (str.length === 0) {
+        return hash;
       }
       for (var i = 0; i < str.length; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -100,4 +100,21 @@ function hideRecipe() {
   recipeView.scrollTop = 0;
   recipeView.innerHTML = "";
   recipeOverlay.classList.add("hidden");
+}
+
+function showPantry() {
+  let str = `<h1>${'karl'}'s Pantry</h1>
+  </br>
+  <ul>`
+  // Change for different users
+  usersData[1].pantry.forEach(item => {
+    let newIngredient = new Ingredient(item.ingredient, {amount: item.amount, unit:''});
+    str += `
+      <li>
+        ${newIngredient.name}
+      </li>
+    `
+  })
+    str += `</ul>`
+    document.querySelector('.pantry-holder').innerHTML = str;
 }
