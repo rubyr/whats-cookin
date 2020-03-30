@@ -29,15 +29,17 @@ function loadRecipes() {
     }
     return acc;
   }, []);
-  recipesToDisplay.forEach(recipe => makeRecipeCard(recipe));
-}
-
-function makeRecipeCard(recipe) {
-  const getHue = str => {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      hash = hash & hash;
+  recipesToDisplay.forEach(recipe => {
+    const getHue = function(str) {
+      var hash = 0;
+      if (str.length === 0) {
+        return hash;
+      }
+      for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        hash = hash & hash;
+      }
+      return hash % 360;
     }
     return hash % 360;
   }
@@ -132,6 +134,19 @@ function hideRecipe() {
   recipeOverlay.classList.add("hidden");
 }
 
-function reload() {
-  location.reload();
+function showPantry() {
+  let str = `<h1>${'karl'}'s Pantry</h1>
+  </br>
+  <ul>`
+  // Change for different users
+  usersData[1].pantry.forEach(item => {
+    let newIngredient = new Ingredient(item.ingredient, {amount: item.amount, unit:''});
+    str += `
+      <li>
+        ${newIngredient.name}
+      </li>
+    `
+  })
+    str += `</ul>`
+    document.querySelector('.pantry-holder').innerHTML = str;
 }
