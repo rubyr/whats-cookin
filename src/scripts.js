@@ -147,8 +147,8 @@ function showPantry() {
       </li>
     `
   })
-    str += `</ul>`
     document.querySelector('.pantry-holder').innerHTML = str;
+    str += `</ul>`
 }
 
 function reload() {
