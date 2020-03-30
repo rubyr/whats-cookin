@@ -1,8 +1,5 @@
 let _users;
-let Ingredient;
-let Recipe;
-let Pantry;
-if (typeof module !== undefined) {
+if (typeof module !== "undefined") {
   _users = require('../data/users');
   Ingredient = require('./Ingredient');
   Recipe = require('./recipe');
@@ -30,6 +27,6 @@ class User {
   }
 }
 
-if (typeof module !== undefined) {
+if (typeof module !== "undefined") {
   module.exports = User;
 }

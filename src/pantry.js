@@ -1,8 +1,3 @@
-let Ingredient;
-if (typeof module !== 'undefined') {
-  Ingredient = require('./Ingredient');
-}
-
 class Pantry {
   constructor(ingList) {
     this.ingredients = ingList;
