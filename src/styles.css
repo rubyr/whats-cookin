@@ -123,6 +123,8 @@ aside button.selected {
 }
 
 .pantry-holder {
+  height: 50%;
+  overflow: scroll;
   display: inline-block;
   position: relative;
   padding: 20px;

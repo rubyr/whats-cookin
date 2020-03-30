@@ -1,7 +1,7 @@
 const recipeHolder = document.querySelector(".recipe-holder");
 const recipeOverlay = document.querySelector(".recipe-overlay");
 const userSelect = document.querySelector("#user-select");
-
+let currentUser = null;
 window.addEventListener("load", loadHomePage);
 
 recipeHolder.addEventListener("click", function(event) {
@@ -20,6 +20,7 @@ function loadHomePage() {
   loadRecipes();
   loadUserSelect();
   loadCurrentUser();
+  makePantry(currentUser.id);
 }
 
 function loadRecipes() {
@@ -31,7 +32,7 @@ function loadRecipes() {
   }, []);
   recipesToDisplay.forEach(recipe => {
     const getHue = function(str) {
-      var hash = 0;
+      let hash = 0;
       if (str.length === 0) {
         return hash;
       }
@@ -41,30 +42,28 @@ function loadRecipes() {
       }
       return hash % 360;
     }
-    return hash % 360;
-  }
-  let str = `
-    <section class="card" data-recipeid='${recipe.id}'>
+    let str = `
+      <section class="card" data-recipeid='${recipe.id}'>
       <h2>${recipe.name}</h2>
       <div class="card-image">
         <img src="${recipe.image}">
       </div>
       <section class="tag-list">`;
-  recipe.tags.forEach(tag => {
-    str += `
+    recipe.tags.forEach(tag => {
+      str += `
         <div class="tag" style="background-color: hsl(${getHue(tag)}, 60%, 41%)">${tag}</div>
         `;
-  });
-  str += `
+    });
+    str += `
       </section>
     </section>
     `;
-  recipeHolder.innerHTML += str;
+    recipeHolder.innerHTML += str;
+  })
 }
 
 function loadUserSelect() {
   usersData.forEach(user => {
-    console.log("user", user.id);
     const newUser = new User(user.id);
     userSelect.innerHTML += `
     <option value="${newUser.id}">${newUser.name}</option>`;
@@ -76,8 +75,8 @@ function loadCurrentUser() {
   if (userId === null) {
     userId = 1;
   }
-  let user = new User(Number(userId));
-  document.querySelector("#name-display").textContent = "Welcome, " + user.name.split(" ")[0] + "!";
+  currentUser = new User(Number(userId));
+  document.querySelector("#name-display").textContent = "Welcome, " + currentUser.name.split(" ")[0] + "!";
 }
 
 function saveCurrentUser(userId) {
@@ -134,21 +133,28 @@ function hideRecipe() {
   recipeOverlay.classList.add("hidden");
 }
 
-function showPantry() {
-  let str = `<h1>${'karl'}'s Pantry</h1>
-  </br>
-  <ul>`
-  // Change for different users
-  usersData[1].pantry.forEach(item => {
-    let newIngredient = new Ingredient(item.ingredient, {amount: item.amount, unit:''});
+function makePantry(userId) {
+  let currentUser = usersData[userId];
+  let str = `<h1>${currentUser.name}'s Pantry</h1>
+</br>
+<ul>`
+  usersData[currentUser.id].pantry.forEach(item => {
+    let newIngredient = new Ingredient(item.ingredient, {
+      amount: item.amount,
+      unit: ''
+    });
     str += `
-      <li>
-        ${newIngredient.name}
-      </li>
-    `
+<li>
+  ${newIngredient.name}
+</li>
+`
   })
-    document.querySelector('.pantry-holder').innerHTML = str;
-    str += `</ul>`
+  str += `</ul>`
+  document.querySelector('.pantry-holder').innerHTML = str;
+}
+
+function showPantry() {
+  document.querySelector('.pantry-holder').classList.toggle('hidden');
 }
 
 function reload() {
