@@ -140,7 +140,7 @@ function hideRecipe() {
 
 function makePantry(userId) {
   let currentUser = usersData[userId];
-  let str0 = `<h1>${currentUser.name}'s Pantry</h1>
+  let str0 = `<h1>${currentUser.name.split(" ")[0]}'s Pantry</h1>
 </br>`
   document.querySelector('.pantry-holder').innerHTML = str0 + document.querySelector('.pantry-holder').innerHTML;
   let str = `<ul>`

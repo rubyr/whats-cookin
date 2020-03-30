@@ -123,25 +123,28 @@ aside button.selected {
 }
 
 .pantry-holder {
-  height: 50%;
+  height: 70%;
   display: inline-block;
   position: relative;
-  padding: 0px;
+  padding: 10px 5px 5px 5px;
   margin-top: 10px;
   border: solid;
   border-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--main-bg);
 }
 .pantry-holder h1{
   position: sticky;
+  display: inline-block;
 }
 
 .pantry-items {
   overflow: scroll;
   height: 90%;
+  width: 100%;
   display: inline-block;
   position: relative;
+  top: 10px;
   color: white;
 }
 
