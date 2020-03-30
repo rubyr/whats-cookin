@@ -140,9 +140,10 @@ function hideRecipe() {
 
 function makePantry(userId) {
   let currentUser = usersData[userId];
-  let str = `<h1>${currentUser.name}'s Pantry</h1>
-</br>
-<ul>`
+  let str0 = `<h1>${currentUser.name.split(" ")[0]}'s Pantry</h1>
+</br>`
+  document.querySelector('.pantry-holder').innerHTML = str0 + document.querySelector('.pantry-holder').innerHTML;
+  let str = `<ul>`
   usersData[currentUser.id].pantry.forEach(item => {
     let newIngredient = new Ingredient(item.ingredient, {
       amount: item.amount,
@@ -155,7 +156,7 @@ function makePantry(userId) {
 `
   })
   str += `</ul>`
-  document.querySelector('.pantry-holder').innerHTML = str;
+  document.querySelector(".pantry-items").innerHTML = str;
 }
 
 function showPantry() {
