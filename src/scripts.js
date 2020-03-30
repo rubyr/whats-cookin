@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const recipeHolder = document.querySelector(".recipe-holder");
 const recipeOverlay = document.querySelector(".recipe-overlay");
 const userSelect = document.querySelector("#user-select");
@@ -15,6 +16,10 @@ userSelect.addEventListener('change', function() {
   saveCurrentUser(event.target.value);
   reload();
 });
+
+search.input.addEventListener('keyup', function() {
+  search.filterByTitle();
+})
 
 function loadHomePage() {
   loadRecipes();
