@@ -122,6 +122,17 @@ aside button.selected {
   display: inline-block;
 }
 
+.pantry-holder {
+  height: 50%;
+  overflow: scroll;
+  display: inline-block;
+  position: relative;
+  padding: 20px;
+  border: solid;
+  border-color: white;
+  border-radius: 5px;
+}
+
 .recipe-overlay {
   position: fixed;
   top: var(--header-height);
