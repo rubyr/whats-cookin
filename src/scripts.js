@@ -150,3 +150,7 @@ function showPantry() {
     str += `</ul>`
     document.querySelector('.pantry-holder').innerHTML = str;
 }
+
+function reload() {
+  location.reload();
+}
