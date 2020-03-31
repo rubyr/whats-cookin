@@ -4,6 +4,13 @@ let search = {
   get query() {
     return this.input.value;
   },
+  favorite: false,
+
+  showAll() {
+    for (const card of recipeHolder.children) {
+      card.classList.remove("hidden");
+    }
+  },
 
   filterByTitle() {
     for (const card of recipeHolder.children) {
@@ -14,5 +21,13 @@ let search = {
         card.classList.remove("hidden");
       }
     }
-  }
+  },
+
+  filterByFavorite() {
+    for (const card of recipeHolder.children) {
+      if (!card.classList.contains("favorite")) {
+        card.classList.add("hidden");
+      }
+    }
+  },
 }

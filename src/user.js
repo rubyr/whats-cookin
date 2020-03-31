@@ -22,6 +22,10 @@ class User {
     this.favoriteRecipes.push(new Recipe(recipeId));
   }
 
+  isFavorite(recipeId) {
+    return !!this.favoriteRecipes.find(recipe => recipe.id === Number(recipeId));
+  }
+
   addToCook(recipeId) {
     this.toCook.push(new Recipe(recipeId));
   }
