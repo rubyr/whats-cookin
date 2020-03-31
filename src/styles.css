@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  border: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   --main-bg: #222831;
@@ -95,6 +96,10 @@ aside button.selected {
   stroke: black;
   stroke-width: 2px;
   stroke-linejoin: round;
+}
+
+.card.to-cook {
+  border: 5px solid var(--highlight);
 }
 
 .card-image {

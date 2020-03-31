@@ -30,4 +30,12 @@ let search = {
       }
     }
   },
+
+  filterToCook() {
+    for (const card of recipeHolder.children) {
+      if (!card.classList.contains("to-cook")) {
+        card.classList.add("hidden");
+      }
+    }
+  }
 }

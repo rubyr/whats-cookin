@@ -31,8 +31,17 @@ class User {
     return !!this.favoriteRecipes.find(recipe => recipe.id === Number(recipeId));
   }
 
-  addToCook(recipeId) {
-    this.toCook.push(new Recipe(recipeId));
+  toggleToCook(recipeId) {
+    const index = this.toCook.indexOf(new Recipe(recipeId));
+    if (index !== -1) {
+      this.toCook.splice(index, 1);
+    } else {
+      this.toCook.push(new Recipe(recipeId));
+    }
+  }
+
+  isToCook(recipeId) {
+    return !!this.toCook.find(recipe => recipe.id === Number(recipeId));
   }
 }
 

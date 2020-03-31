@@ -97,6 +97,7 @@ function showRecipe(recipeId) {
   recipeOverlay.classList.remove("hidden");
   let totalCost = 0;
   const favorited = currentUser.isFavorite(recipeId);
+  const toCook = currentUser.isToCook(recipeId);
   recipeView.innerHTML += `
   <section class="recipe-view-options">
     <div>  
@@ -108,7 +109,7 @@ function showRecipe(recipeId) {
       <label>Add to Favorites</label>
     </div>
     <div>
-      <button id="add-to-cook" onclick="addToCook(${recipeId})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></button>
+      <button class="${toCook ? "button-applied" : ""}" id="add-to-cook" onclick="addToCook(${recipeId})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></button>
       <label>Add to Cook List</label>
     </div>
   </section>
@@ -194,6 +195,17 @@ function favoriteRecipe(recipeId) {
     .classList.toggle("button-applied");
 }
 
+function addToCook(recipeId) {
+  if (currentUser !== null) {
+    currentUser.toggleToCook(recipeId);
+  }
+  document
+    .querySelector(`.card[data-recipeid="${recipeId}"]`)
+    .classList.toggle("to-cook");
+  document.querySelector(".recipe-view-options #add-to-cook")
+    .classList.toggle("button-applied");
+}
+
 function filterFavorite() {
   search.favorite = !search.favorite;
   if (search.favorite) {
@@ -202,5 +214,16 @@ function filterFavorite() {
   } else {
     search.showAll();
     document.querySelector("#filter-favorite-button").classList.remove("selected");
+  }
+}
+
+function filterToCook() {
+  search.toCook = !search.toCook;
+  if (search.toCook) {
+    search.filterToCook();
+    document.querySelector("#filter-to-cook-button").classList.add("selected");
+  } else {
+    search.showAll();
+    document.querySelector("#filter-to-cook-button").classList.remove("selected");
   }
 }
