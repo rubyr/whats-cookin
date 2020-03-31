@@ -185,13 +185,13 @@ function reload() {
 
 function favoriteRecipe(recipeId) {
   if (currentUser !== null) {
-    currentUser.addFavorite(recipeId);
+    currentUser.toggleFavorite(recipeId);
   }
   document
     .querySelector(`.card[data-recipeid="${recipeId}"]`)
-    .classList.add("favorite");
+    .classList.toggle("favorite");
   document.querySelector(".recipe-view-options #favorite-recipe")
-    .classList.add("button-applied");
+    .classList.toggle("button-applied");
 }
 
 function filterFavorite() {

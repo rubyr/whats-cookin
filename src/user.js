@@ -18,8 +18,13 @@ class User {
     this.toCook = [];
   }
 
-  addFavorite(recipeId) {
-    this.favoriteRecipes.push(new Recipe(recipeId));
+  toggleFavorite(recipeId) {
+    if (this.isFavorite(recipeId)) {
+      const index = this.favoriteRecipes.indexOf(new Recipe(recipeId));
+      this.favoriteRecipes.splice(index, 1);
+    } else {
+      this.favoriteRecipes.push(new Recipe(recipeId));
+    }
   }
 
   isFavorite(recipeId) {
