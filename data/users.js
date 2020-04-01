@@ -3749,6 +3749,10 @@ let usersData = [
         "amount": 5
       },
       {
+        "ingredient": 11294,
+        "amount": 5
+      },
+      {
         "ingredient": 9003,
         "amount": 7
       },

@@ -10,6 +10,7 @@ recipeHolder.addEventListener("click", function(event) {
   if (event.target.closest(".card") !== undefined) {
     const id = event.target.closest(".card").dataset.recipeid;
     showRecipe(Number(id));
+    checkPantry(Number(id));
   }
 });
 
@@ -22,12 +23,13 @@ search.input.addEventListener("keyup", function() {
   search.filterByTitle();
 });
 
+
 function loadHomePage() {
   loadRecipes();
   loadUserSelect();
   loadCurrentUser();
   makePantry(currentUser.id);
-  loadTags(loadRecipes());
+  loadTags();
 }
 
 function loadRecipes() {
@@ -58,12 +60,13 @@ function loadRecipes() {
     `;
     recipeHolder.innerHTML += str;
   });
-  return recipesToDisplay
 }
 
-function loadTags(recipesWithTags) {
-  let tags = recipesWithTags.reduce((tagsAcc, recipe) => {
-    recipe.tags.forEach(tag => tagsAcc.push(tag))
+function loadTags() {
+  let tags = recipes.reduce((tagsAcc, recipe) => {
+    if (recipe.id > 0) {
+      recipe.tags.forEach(tag => tagsAcc.push(tag))
+    }
     return tagsAcc
   }, []);
   tagsWithRepeats = tags.filter(tag => tag !== undefined)
@@ -137,6 +140,7 @@ function saveCurrentUser(userId) {
 function showRecipe(recipeId) {
   const recipeData = recipes.find(recipe => recipe.id === recipeId);
   const recipeView = document.querySelector(".recipe-view");
+  recipeView.dataset.recipeid = recipeId;
   recipeOverlay.classList.remove("hidden");
   let totalCost = 0;
   const favorited = currentUser.isFavorite(recipeId);
@@ -190,28 +194,68 @@ function showRecipe(recipeId) {
   `;
 }
 
+function checkPantry(recipeId) {
+  let pantryRecipeDisplay = document.querySelector('.pantry-recipe-display');
+  let currentRecipe = new Recipe(recipeId);
+  let ingNeeded = currentUser.pantry.compareIngredients(currentRecipe)
+  pantryRecipeDisplay.classList.toggle('hidden')
+  document.querySelector('.pantry-items').classList.toggle('hidden');
+  if (ingNeeded.length === 0) {
+    let str = `You have all of the ingredients to make ${currentRecipe.name}! Click "Cook!" below to remove the needed ingredients from your pantry.`
+    pantryRecipeDisplay.innerHTML = str;
+    document.querySelector('.cook-button').classList.toggle('hidden');
+  } else {
+    ingNeeded = ingNeeded.map(ingredient => new Ingredient(ingredient.id, ingredient.quantity));
+    let str = `<ul><h4>You are missing:</h4>`
+    ingNeeded.forEach(ing => {
+      str += `<li>${ing.name} ${ing.amount} (${currentRecipe.ingredients.find(ingre => ingre.id === ing.id).unit})
+      `
+    })
+    str += `</ul>`
+    pantryRecipeDisplay.innerHTML = str;
+
+
+  }
+}
+
+function cookRecipe() {
+  console.log('Hey')
+  const currentRecipe = new Recipe(Number(document.querySelector('.recipe-view').dataset.recipeid))
+  currentUser.pantry.subtractIngredients(currentRecipe);
+  document.querySelector(".pantry-holder").innerHTML = `
+          <section class="pantry-items">
+          </section>
+          <section class='pantry-recipe-display'>
+          </section>
+          <button class='cook-button hidden' onclick='cookRecipe()'>Cook!</button>`;
+  makePantry();
+  hideRecipe();
+}
+
 function hideRecipe() {
   const recipeView = document.querySelector(".recipe-view");
   recipeView.scrollTop = 0;
   recipeView.innerHTML = "";
   recipeOverlay.classList.add("hidden");
+  document.querySelector('.pantry-recipe-display').classList.add('hidden');
+  document.querySelector('.pantry-items').classList.remove('hidden');
+  document.querySelector('.cook-button').classList.add('hidden');
 }
 
-function makePantry(userId) {
-  let currentUser = usersData[userId];
+function makePantry() {
   let str0 = `<h1>${currentUser.name.split(" ")[0]}'s Pantry</h1>
 </br>`;
   document.querySelector(".pantry-holder").innerHTML =
     str0 + document.querySelector(".pantry-holder").innerHTML;
   let str = `<ul>`;
-  usersData[currentUser.id].pantry.forEach(item => {
-    let newIngredient = new Ingredient(item.ingredient, {
+  currentUser.pantry.ingredients.forEach(item => {
+    let newIngredient = new Ingredient(item.id, {
       amount: item.amount,
       unit: ""
     });
     str += `
 <li>
-  ${newIngredient.name}
+  ${newIngredient.name} (${newIngredient.amount})
 </li>
 `;
   });
