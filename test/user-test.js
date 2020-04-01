@@ -34,12 +34,12 @@ describe('user', function() {
   });
 
   it('should have a list of favorite recipes', function() {
-    user.addFavorite(595736);
+    user.toggleFavorite(595736);
     expect(user.favoriteRecipes).to.deep.equal([new Recipe(595736)]);
   });
 
   it('should have a toCook list', function() {
-    user.addToCook(595736);
+    user.toggleToCook(595736);
     expect(user.toCook).to.deep.equal([new Recipe(595736)]);
   })
 });
