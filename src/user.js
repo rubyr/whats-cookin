@@ -18,12 +18,30 @@ class User {
     this.toCook = [];
   }
 
-  addFavorite(recipeId) {
-    this.favoriteRecipes.push(new Recipe(recipeId));
+  toggleFavorite(recipeId) {
+    if (this.isFavorite(recipeId)) {
+      const index = this.favoriteRecipes.indexOf(new Recipe(recipeId));
+      this.favoriteRecipes.splice(index, 1);
+    } else {
+      this.favoriteRecipes.push(new Recipe(recipeId));
+    }
   }
 
-  addToCook(recipeId) {
-    this.toCook.push(new Recipe(recipeId));
+  isFavorite(recipeId) {
+    return !!this.favoriteRecipes.find(recipe => recipe.id === Number(recipeId));
+  }
+
+  toggleToCook(recipeId) {
+    const index = this.toCook.indexOf(new Recipe(recipeId));
+    if (index !== -1) {
+      this.toCook.splice(index, 1);
+    } else {
+      this.toCook.push(new Recipe(recipeId));
+    }
+  }
+
+  isToCook(recipeId) {
+    return !!this.toCook.find(recipe => recipe.id === Number(recipeId));
   }
 }
 

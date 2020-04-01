@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  border: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   --main-bg: #222831;
@@ -87,8 +88,30 @@ aside button.selected {
   margin-bottom: 10px;
 }
 
+.card.favorite .favorite-icon {
+  fill: red;
+}
+
+.card.favorite .favorite-icon>path { 
+  stroke: black;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+.card.to-cook {
+  border: 5px solid var(--highlight);
+}
+
 .card-image {
   overflow: hidden;
+  position: relative;
+}
+
+.card-image>svg {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  fill: #00000000;
 }
 
 .card img {
@@ -133,7 +156,8 @@ aside button.selected {
   border-radius: 10px;
   background-color: var(--main-bg);
 }
-.pantry-holder h1{
+
+.pantry-holder h1 {
   position: sticky;
   display: inline-block;
 }
@@ -147,7 +171,6 @@ aside button.selected {
   top: 10px;
   color: white;
 }
-
 
 .recipe-overlay {
   position: fixed;
@@ -171,15 +194,50 @@ aside button.selected {
   overflow: scroll;
 }
 
-.recipe-view button {
-  position: sticky;
-  top: 5px;
-  left: 15px;
-  border: none;
+.recipe-view-options {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.recipe-view-options div {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+}
+
+.recipe-view-options button {
+  border: 2px solid black;
+  border-radius: 100000px;
   background: none;
   color: var(--secondary-bg);
   line-height: 30px;
   font-size: 30px;
+  width: 40px;
+  height: 40px;
+  padding-top: 3px;
+}
+
+.recipe-view-options button.button-applied {
+  background-color: black;
+  fill: white;
+}
+
+.recipe-view-options button~label {
+  align-self: center;
+  padding-right: 5px;
+  opacity: 0;
+}
+
+.recipe-view-options button:hover~label {
+  opacity: 1;
+  transition: opacity 0.1s;
+}
+
+.recipe-view-options svg {
+  width: 18px;
 }
 
 .recipe-view h2 {
@@ -191,7 +249,6 @@ aside button.selected {
   display: block;
   margin: 0 auto 30px;
   height: 50%;
-
 }
 
 .recipe-view hr {
