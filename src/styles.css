@@ -132,6 +132,7 @@ aside button.selected {
 
 .card.favorite .favorite-icon {
   fill: red;
+  width: 30px;
 }
 
 .card.favorite .favorite-icon>path {
