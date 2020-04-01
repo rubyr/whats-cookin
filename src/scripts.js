@@ -22,6 +22,10 @@ search.input.addEventListener("keyup", function() {
   search.filterByTitle();
 });
 
+search.ingredientInput.addEventListener("keyup", function() {
+  filterIngredient();
+});
+
 function loadHomePage() {
   loadRecipes();
   loadUserSelect();
@@ -82,31 +86,29 @@ function getHue(str) {
     hash = hash & hash;
   }
   return hash % 360;
-};
+}
 
 function displaySearchTags(tags) {
   let str = '';
   tags.forEach(tag => {
-    str += `
-      <button class="tag tag-button" style="background-color: hsl(${getHue(tag)}, 60%, 41%)">${tag}</div>`;
+    str += `<button class="tag tag-button" style="background-color: hsl(${getHue(tag)}, 60%, 41%)">${tag}</button>`;
   })
   document.querySelector(".tag-filter-container").innerHTML = str;
   document.querySelector('.tag-filter-container').addEventListener("click", addTagFilter);
 }
 
 function addTagFilter() {
-  let tagFilteredRecipes = []
   if (event.target.classList.contains('tag-button')) {
     let tagToFilter = event.target.textContent.trim();
-    console.log(tagToFilter);
+
     if (search.tags.includes(tagToFilter)) {
       const index = search.tags.indexOf(tagToFilter);
       search.tags.splice(index, 1);
     } else {
       search.tags.push(tagToFilter);
     }
-    search.showAll();
-    search.filterByTag();
+    search.reapplyFilters();
+    
     event.target.classList.toggle('selected-tag');
   }
 }
@@ -132,7 +134,6 @@ function loadCurrentUser() {
 function saveCurrentUser(userId) {
   localStorage.setItem("currentUser", userId);
 }
-
 
 function showRecipe(recipeId) {
   const recipeData = recipes.find(recipe => recipe.id === recipeId);
@@ -251,22 +252,17 @@ function addToCook(recipeId) {
 
 function filterFavorite() {
   search.favorite = !search.favorite;
-  if (search.favorite) {
-    search.filterByFavorite();
-    document.querySelector("#filter-favorite-button").classList.add("selected");
-  } else {
-    search.showAll();
-    document.querySelector("#filter-favorite-button").classList.remove("selected");
-  }
+  search.reapplyFilters();
+  document.querySelector("#filter-favorite-button").classList.toggle("selected");
 }
 
 function filterToCook() {
   search.toCook = !search.toCook;
-  if (search.toCook) {
-    search.filterToCook();
-    document.querySelector("#filter-to-cook-button").classList.add("selected");
-  } else {
-    search.showAll();
-    document.querySelector("#filter-to-cook-button").classList.remove("selected");
-  }
+  search.reapplyFilters();
+  document.querySelector("#filter-to-cook-button").classList.toggle("selected");
+}
+
+function filterIngredient() {
+  search.ingredients = search.ingredientInput.value.split(",").map(i => i.trim().toLowerCase());
+  search.reapplyFilters();
 }
