@@ -214,7 +214,16 @@ aside button.selected {
   top: 10px;
   color: white;
 }
-
+.pantry-recipe-display {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.pantry-recipe-display ul {
+  list-style-type: none;
+}
+.cook-button {
+  width: 80%;
+}
 .recipe-overlay {
   position: fixed;
   top: var(--header-height);
