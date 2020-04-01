@@ -108,7 +108,7 @@ function addTagFilter() {
       search.tags.push(tagToFilter);
     }
     search.reapplyFilters();
-    
+
     event.target.classList.toggle('selected-tag');
   }
 }
@@ -265,4 +265,14 @@ function filterToCook() {
 function filterIngredient() {
   search.ingredients = search.ingredientInput.value.split(",").map(i => i.trim().toLowerCase());
   search.reapplyFilters();
+}
+
+function toggleNav() {
+  if (document.querySelector("nav").classList.contains("nav-hide")) {
+    document.querySelector("nav").classList.remove("nav-hide");
+    document.documentElement.style.setProperty("--header-height", "160px");
+  } else {
+    document.querySelector("nav").classList.add("nav-hide");
+    document.documentElement.style.setProperty("--header-height", "60px");
+  }
 }
