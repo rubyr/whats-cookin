@@ -12,22 +12,27 @@
 <body>
   <header>
     <h1>What's Cookin'?</h1>
-    <input type="text" id="search" placeholder="Search">
-    <h2>Select some tags!</h2>
+    <div class="header-search">
+      <input type="text" id="search" placeholder="Search">
+      <button id="expand-search" onclick="toggleNav()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></button>
+    </div>
+  </header>
+  <nav class="nav-hide">
+    <input type="text" id="ingredient-search" placeholder="Ingredients">
     <section class="search-tags">
       <section class="tag-filter-container">
         <section class="tag-container">
         </section>
       </section>
     </section>
-  </header>
+  </nav>
   <main>
     <aside>
       <h2 id="name-display">Welcome, Horacio!</h2>
       <select id="user-select">
         <option>Select a different user</option>
       </select>
-      <button onclick="showPantry()">Show Pantry</button>
+      <button onclick="showPantry()">Hide/Show Pantry</button>
       <button id="filter-favorite-button" onclick="filterFavorite()">Show Favorite Meals</button>
       <button id="filter-to-cook-button" onclick="filterToCook()">Show Upcoming Meals</button>
       <section class="pantry-holder">

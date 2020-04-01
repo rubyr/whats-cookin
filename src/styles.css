@@ -1,26 +1,30 @@
+:root {
+  --main-bg: #222831;
+  --secondary-bg: #393e46;
+  --highlight: #00adb5;
+  --text: #eeeeee;
+  --header-height: 60px;
+  --aside-width: 300px;
+  --column-width: 300px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   border: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  --main-bg: #222831;
-  --secondary-bg: #393e46;
-  --highlight: #00adb5;
-  --text: #eeeeee;
-  --header-height: 100px;
-  --aside-width: 300px;
-  --column-width: 300px;
 }
 
 header {
   width: 100vw;
-  height: var(--header-height);
+  height: 60px;
   background: var(--text);
   color: var(--highlight);
   display: flex;
   align-items: center;
-  position: absolute;
+  justify-content: space-between;
+  padding: 0 50px;
   position: fixed;
   z-index: 10000;
 }
@@ -39,13 +43,35 @@ header h2 {
   color: var(--main-bg);
 }
 
-header #search {
+header button {
+  background: #00000000;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+input {
   width: 200px;
+  height: 30px;
   font-size: 20px;
   line-height: 24px;
   margin-left: 20px;
-  border: none;
-  outline: none;
+  border: 1px solid var(--secondary-bg);
+  border-radius: 3px;
+  padding-left: 5px;
+}
+
+nav {
+  height: 100px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 60px;
+  z-index: 10000;
+  background: #dadada;
 }
 
 aside {
@@ -77,6 +103,10 @@ aside button.selected {
   color: var(--text);
 }
 
+.nav-hide {
+  display: none;
+}
+
 .main-view {
   float: right;
   width: calc(100vw - var(--aside-width));
@@ -89,10 +119,7 @@ aside button.selected {
 .tag-filter-container {
   width: 53vw;
   overflow: scroll;
-  height: calc(var(--header-height) - 10px);
-  border-style: dashed;
-  border-width: 1px;
-  border-color: grey;
+  height: 90%;
   display: flex;
   justify-content: flex-start;
   align-content: center;
@@ -110,7 +137,9 @@ aside button.selected {
 }
 
 .selected-tag {
-  color: black !important;
+  color: var(--main-bg) !important;
+  background-image: linear-gradient(#ffffff, #ffffff);
+  background-blend-mode: soft-light;
 }
 
 .recipe-holder {
