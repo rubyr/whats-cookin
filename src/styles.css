@@ -71,7 +71,7 @@ nav {
   position: fixed;
   top: 60px;
   z-index: 10000;
-  background: #fff;
+  background: #dadada;
 }
 
 aside {
@@ -137,7 +137,9 @@ aside button.selected {
 }
 
 .selected-tag {
-  color: black !important;
+  color: var(--main-bg) !important;
+  background-image: linear-gradient(#ffffff, #ffffff);
+  background-blend-mode: soft-light;
 }
 
 .recipe-holder {
