@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header>
-      <h1>What's Cookin'?</h1>
-      <input type="text" id="search" placeholder="Search">
-    </header>
-    <main>
-      <aside>
-        <h2 id="name-display">Welcome, Horacio!</h2>
-        <select id="user-select">
-          <option>Select a different user</option>
-        </select>
-        <button onclick="showPantry()">Show Pantry</button>
-        <button id="filter-favorite-button" onclick="filterFavorite()">Show Favorite Meals</button>
-        <button id="filter-to-cook-button" onclick="filterToCook()">Show Upcoming Meals</button>
-        <section class="pantry-holder">
-          <section class="pantry-items">
-          </section>
-        </section>
-      </aside>
-      <section class="main-view">
-        <section class="recipe-holder">
-        </section>
-        <section class="recipe-overlay hidden">
-          <section class="recipe-view"></section>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Whats Cookin</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>What's Cookin'?</h1>
+    <input type="text" id="search" placeholder="Search">
+    <h2>Select some tags!</h2>
+    <section class="search-tags">
+      <section class="tag-filter-container">
+        <section class="tag-container">
         </section>
       </section>
-    </main>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./Ingredient.js"></script>
-    <script type="text/javascript" src="./recipe.js"></script>
-    <script type="text/javascript" src="./pantry.js"></script>
-    <script type="text/javascript" src="./user.js"></script>
-    <script type="text/javascript" src="./search.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-  </body>
+    </section>
+  </header>
+  <main>
+    <aside>
+      <h2 id="name-display">Welcome, Horacio!</h2>
+      <select id="user-select">
+        <option>Select a different user</option>
+      </select>
+      <button onclick="showPantry()">Show Pantry</button>
+      <button id="filter-favorite-button" onclick="filterFavorite()">Show Favorite Meals</button>
+      <button id="filter-to-cook-button" onclick="filterToCook()">Show Upcoming Meals</button>
+      <section class="pantry-holder">
+        <section class="pantry-items">
+        </section>
+      </section>
+    </aside>
+    <section class="main-view">
+      <section class="recipe-holder">
+      </section>
+      <section class="recipe-overlay hidden">
+        <section class="recipe-view"></section>
+      </section>
+    </section>
+  </main>
+  <script type="text/javascript" src="../data/users.js"></script>
+  <script type="text/javascript" src="../data/recipes.js"></script>
+  <script type="text/javascript" src="../data/ingredients.js"></script>
+  <script type="text/javascript" src="./Ingredient.js"></script>
+  <script type="text/javascript" src="./recipe.js"></script>
+  <script type="text/javascript" src="./pantry.js"></script>
+  <script type="text/javascript" src="./user.js"></script>
+  <script type="text/javascript" src="./search.js"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
 </html>

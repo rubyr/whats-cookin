@@ -37,5 +37,13 @@ let search = {
         card.classList.add("hidden");
       }
     }
+  },
+
+  filterByTag() {
+    for (const card of recipeHolder.children) {
+      if (!card.classList.contains("tagged")) {
+        card.classList.add("hidden");
+      }
+    }
   }
 }

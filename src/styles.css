@@ -18,20 +18,32 @@ header {
   height: var(--header-height);
   background: var(--text);
   color: var(--highlight);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  position: absolute;
   position: fixed;
   z-index: 10000;
 }
 
 header h1 {
+  display: flex;
   font-family: 'Pacifico', cursive;
   font-size: 2em;
+}
+
+header h2 {
+  display: flex;
+  margin-left: 80px;
+  font-family: 'Pacifico', cursive;
+  font-size: 1em;
+  color: var(--main-bg);
 }
 
 header #search {
   width: 200px;
   font-size: 20px;
   line-height: 24px;
+  margin-left: 20px;
   border: none;
   outline: none;
 }
@@ -70,6 +82,36 @@ aside button.selected {
   width: calc(100vw - var(--aside-width));
   margin-top: var(--header-height);
 }
+.search-tags {
+  display: inline-block;
+}
+
+.tag-filter-container {
+  width: 53vw;
+  overflow: scroll;
+  height: calc(var(--header-height) - 10px);
+  border-style: dashed;
+  border-width: 1px;
+  border-color: grey;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 15px;
+}
+
+.tag-filter-container .tag {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  height: 30px;
+}
+
+.selected-tag {
+  color: black !important;
+}
 
 .recipe-holder {
   columns: var(--column-width);
@@ -92,7 +134,7 @@ aside button.selected {
   fill: red;
 }
 
-.card.favorite .favorite-icon>path { 
+.card.favorite .favorite-icon>path {
   stroke: black;
   stroke-width: 2px;
   stroke-linejoin: round;
