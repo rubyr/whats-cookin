@@ -38,17 +38,6 @@ function loadRecipes() {
     return acc;
   }, []);
   recipesToDisplay.forEach(recipe => {
-    const getHue = function(str) {
-      let hash = 0;
-      if (str.length === 0) {
-        return hash;
-      }
-      for (var i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-        hash = hash & hash;
-      }
-      return hash % 360;
-    };
     let str = `
       <section class="card" data-recipeid='${recipe.id}'>
       <h2>${recipe.name}</h2>
@@ -83,45 +72,42 @@ function loadTags(recipesWithTags) {
   displaySearchTags(tags)
 }
 
+function getHue(str) {
+  let hash = 0;
+  if (str.length === 0) {
+    return hash;
+  }
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash;
+  }
+  return hash % 360;
+};
+
 function displaySearchTags(tags) {
   let str = '';
   tags.forEach(tag => {
-    const getHue = function(str) {
-      let hash = 0;
-      if (str.length === 0) {
-        return hash;
-      }
-      for (var i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-        hash = hash & hash;
-      }
-      return hash % 360;
-    };
     str += `
-      <button class="tag tag-button" style="background-color: hsl(${
-  getHue(tag)}, 60%, 41%)">${tag}</div>
-      `;
+      <button class="tag tag-button" style="background-color: hsl(${getHue(tag)}, 60%, 41%)">${tag}</div>`;
   })
   document.querySelector(".tag-filter-container").innerHTML = str;
   document.querySelector('.tag-filter-container').addEventListener("click", addTagFilter);
 }
 
 function addTagFilter() {
-  console.log(event.target)
   let tagFilteredRecipes = []
   if (event.target.classList.contains('tag-button')) {
-    let tagToFilter = event.target.innerHTML;
-    event.target.classList.add('selected-tag');
-    recipeData.filter(rec => {
-    rec.tags.find(tag => tag === tagToFilter);
-    tagFilteredRecipes.push(rec.id)}
-  );
-      }})
-
-    // document
-    //   .querySelector(`.card[data-recipeid="${recipeId}"]`)
-    console.log(tagFilteredRecipes);
-
+    let tagToFilter = event.target.textContent.trim();
+    console.log(tagToFilter);
+    if (search.tags.includes(tagToFilter)) {
+      const index = search.tags.indexOf(tagToFilter);
+      search.tags.splice(index, 1);
+    } else {
+      search.tags.push(tagToFilter);
+    }
+    search.showAll();
+    search.filterByTag();
+    event.target.classList.toggle('selected-tag');
   }
 }
 

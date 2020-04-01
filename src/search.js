@@ -5,6 +5,7 @@ let search = {
     return this.input.value;
   },
   favorite: false,
+  tags: [],
 
   showAll() {
     for (const card of recipeHolder.children) {
@@ -41,9 +42,14 @@ let search = {
 
   filterByTag() {
     for (const card of recipeHolder.children) {
-      if (!card.classList.contains("tagged")) {
-        card.classList.add("hidden");
-      }
+      const recipeId = Number(card.dataset.recipeid);
+      const recipe = recipeData.find(recipe => recipe.id === recipeId);
+      const recipeTags = recipe.tags;
+      this.tags.forEach(tag => {
+        if (!recipeTags.includes(tag)) {
+          card.classList.add("hidden");
+        }
+      });
     }
   }
 }
