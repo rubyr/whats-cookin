@@ -33,7 +33,6 @@ class Pantry {
       return;
     }
     recipe.ingredients.forEach(recipeIng => {
-      console.log(this.ingredients);
       let prevAmount = this.ingredients[this.findIngredient(recipeIng.id)].amount;
       this.updateIngredient(recipeIng.id, prevAmount - recipeIng.amount);
     });
