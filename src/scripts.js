@@ -5,6 +5,7 @@ const userSelect = document.querySelector("#user-select");
 let currentUser = null;
 window.addEventListener("load", loadHomePage);
 
+
 recipeHolder.addEventListener("click", function(event) {
   if (event.target.closest(".card") !== undefined) {
     const id = event.target.closest(".card").dataset.recipeid;
@@ -26,6 +27,7 @@ function loadHomePage() {
   loadUserSelect();
   loadCurrentUser();
   makePantry(currentUser.id);
+  loadTags(loadRecipes());
 }
 
 function loadRecipes() {
@@ -36,17 +38,6 @@ function loadRecipes() {
     return acc;
   }, []);
   recipesToDisplay.forEach(recipe => {
-    const getHue = function(str) {
-      let hash = 0;
-      if (str.length === 0) {
-        return hash;
-      }
-      for (var i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-        hash = hash & hash;
-      }
-      return hash % 360;
-    };
     let str = `
       <section class="card" data-recipeid='${recipe.id}'>
       <h2>${recipe.name}</h2>
@@ -67,6 +58,57 @@ function loadRecipes() {
     `;
     recipeHolder.innerHTML += str;
   });
+  return recipesToDisplay
+}
+
+function loadTags(recipesWithTags) {
+  let tags = recipesWithTags.reduce((tagsAcc, recipe) => {
+    recipe.tags.forEach(tag => tagsAcc.push(tag))
+    return tagsAcc
+  }, []);
+  tagsWithRepeats = tags.filter(tag => tag !== undefined)
+  const uniqueTags = new Set(tagsWithRepeats);
+  tags = Array.from(uniqueTags);
+  displaySearchTags(tags)
+}
+
+function getHue(str) {
+  let hash = 0;
+  if (str.length === 0) {
+    return hash;
+  }
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash;
+  }
+  return hash % 360;
+};
+
+function displaySearchTags(tags) {
+  let str = '';
+  tags.forEach(tag => {
+    str += `
+      <button class="tag tag-button" style="background-color: hsl(${getHue(tag)}, 60%, 41%)">${tag}</div>`;
+  })
+  document.querySelector(".tag-filter-container").innerHTML = str;
+  document.querySelector('.tag-filter-container').addEventListener("click", addTagFilter);
+}
+
+function addTagFilter() {
+  let tagFilteredRecipes = []
+  if (event.target.classList.contains('tag-button')) {
+    let tagToFilter = event.target.textContent.trim();
+    console.log(tagToFilter);
+    if (search.tags.includes(tagToFilter)) {
+      const index = search.tags.indexOf(tagToFilter);
+      search.tags.splice(index, 1);
+    } else {
+      search.tags.push(tagToFilter);
+    }
+    search.showAll();
+    search.filterByTag();
+    event.target.classList.toggle('selected-tag');
+  }
 }
 
 function loadUserSelect() {
@@ -91,6 +133,7 @@ function saveCurrentUser(userId) {
   localStorage.setItem("currentUser", userId);
 }
 
+
 function showRecipe(recipeId) {
   const recipeData = recipes.find(recipe => recipe.id === recipeId);
   const recipeView = document.querySelector(".recipe-view");
@@ -100,7 +143,7 @@ function showRecipe(recipeId) {
   const toCook = currentUser.isToCook(recipeId);
   recipeView.innerHTML += `
   <section class="recipe-view-options">
-    <div>  
+    <div>
       <button id="close-recipe" onclick="hideRecipe()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></button>
       <label>Close</label>
     </div>
